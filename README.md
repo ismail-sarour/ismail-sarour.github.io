@@ -1,33 +1,41 @@
-# 🚀 Ismail Sarour | Computer Vision & Applied AI Portfolio
+# 🚀 Ismail Sarour | Data Engineering & Applied AI Portfolio
 
-Welcome to the source code of my personal portfolio. I am a **Data Engineering student** based in Agadir, Morocco, specializing in **Computer Vision** and **Applied AI**. 
+Welcome to the source code of my personal portfolio. I am a **Data Engineering student** based in Agadir, Morocco, specializing in building intelligent data pipelines and **Applied AI** solutions.
 
-Live Site: [ismail-sarour.github.io](https://ismail-sarour.github.io)
+**🌐 Live Site:** [ismail-sarour.vercel.app](https://ismail-sarour.vercel.app)
 
-## 🎯 About Me
-I bridge the gap between complex AI research and practical, real-world applications. My focus is on building efficient pipelines that process visual data to solve safety and business intelligence problems.
+---
+
+## 🎯 Professional Profile
+I bridge the gap between complex AI research and practical, real-world data applications. My focus is on engineering efficient pipelines that process visual and structured data to solve safety, automation, and business intelligence problems.
 
 ## 🛠️ Tech Stack (Portfolio Site)
-This portfolio was built to be lightweight and high-performance:
-* **Frontend:** React.js (via CDN for speed)
-* **Styling:** Custom CSS3 with a focus on Glassmorphism and Responsive Design
+This portfolio is designed for maximum performance and a clean "Glassmorphism" aesthetic:
+* **Frontend:** React.js (via CDN for lightweight delivery)
+* **Styling:** Modern CSS3 with Responsive Design (Mobile-First)
 * **Icons:** Lucide-React
-* **Deployment:** GitHub Pages
+* **Deployment:** Vercel (Automatic CI/CD from GitHub)
 
 ## 🌟 Featured Projects
 
 ### 1. Real-Time PPE Detection System
-* **Tech:** YOLOv8, PyTorch, OpenCV
-* **Achievement:** 83.3% mAP at 34 FPS.
-* **Goal:** Automating workplace safety compliance by detecting helmets and safety vests in real-time.
-* [View Repo](https://github.com/ismail-sarour/PPE-Detection)
+* **Tech:** YOLOv8, PyTorch, OpenCV, Computer Vision
+* **Achievement:** Achieved 83.3% mAP at 34 FPS.
+* **Impact:** Automating workplace safety compliance by detecting helmets and safety vests in real-time.
+* [View Repository](https://github.com/ismail-sarour/PPE-Detection)
 
 ### 2. Netflix Content Strategy Analysis
-* **Tech:** Python, Pandas, Seaborn, Matplotlib
-* **Achievement:** Implemented a formal statistical sampling framework (95% Confidence Level) to analyze library trends.
-* [View Repo](https://github.com/ismail-sarour/Netflix-Content-Strategy-Analysis)
+* **Tech:** Python, Pandas, Seaborn, Matplotlib, Statistical Modeling
+* **Achievement:** Implemented a formal statistical sampling framework (95% Confidence Level) to analyze global library trends.
+* [View Repository](https://github.com/ismail-sarour/Netflix-Content-Strategy-Analysis)
 
-## 🔧 How to Use Locally
+## 📂 Repository Structure
+To keep the project clean, the source code is organized as follows:
+* `/public`: Contains the production-ready `index.html`, assets (CV, Images), and styles.
+* `README.md`: Project overview and professional bio.
+* `.gitignore`: Properly configured to keep sensitive environment variables (`.env`) out of the public domain.
+
+## 🔧 Local Development
 1. Clone the repository:
    ```bash
-   git clone [https://github.com/ismail-sarour/ismail-sarour.github.io.git](https://github.com/ismail-sarour/ismail-sarour.github.io.git)
+   git clone [https://github.com/ismail-sarour/ismail-sarour.git](https://github.com/ismail-sarour/ismail-sarour.git)
