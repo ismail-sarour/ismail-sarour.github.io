@@ -20,9 +20,9 @@ This portfolio is designed for maximum performance and a clean "Glassmorphism" a
 
 ### 1. Real-Time PPE Detection System
 * **Tech:** YOLOv8, PyTorch, OpenCV, Computer Vision
-* **Achievement:** Achieved 83.3% mAP at 34 FPS.
+* **Achievement:** Achieved 84.1% mAP at 34 FPS.
 * **Impact:** Automating workplace safety compliance by detecting helmets and safety vests in real-time.
-* [View Repository](https://github.com/ismail-sarour/PPE-Detection)
+* [View Repository](https://github.com/ismail-sarour/pfe-ppe-detection-platform)
 
 ### 2. Netflix Content Strategy Analysis
 * **Tech:** Python, Pandas, Seaborn, Matplotlib, Statistical Modeling
