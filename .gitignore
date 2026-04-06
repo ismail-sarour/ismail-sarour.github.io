@@ -2,4 +2,4 @@
 *.pdf
 *.png
 *.env.local
-vercel/
+.vercel/
