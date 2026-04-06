@@ -1,5 +1,3 @@
-*.png
-*.pdf
 .env*
 .vercel
 .env.local
