@@ -1,41 +1,72 @@
-# 🚀 Ismail Sarour | Data Engineering & Applied AI Portfolio
+# 🚀 Ismail Sarour | Applied AI & Computer Vision
 
-Welcome to the source code of my personal portfolio. I am a **Data Engineering student** based in Agadir, Morocco, specializing in building intelligent data pipelines and **Applied AI** solutions.
+Welcome to my portfolio repository.
 
-**🌐 Live Site:** [ismail-sarour.vercel.app](https://ismail-sarour.vercel.app)
+I focus on building **real-time computer vision systems and data-driven applications** that solve practical problems in safety, automation, and analysis.
+
+**🌐 Live Site:** https://ismail-sarour.vercel.app
 
 ---
 
-## 🎯 Professional Profile
-I bridge the gap between complex AI research and practical, real-world data applications. My focus is on engineering efficient pipelines that process visual and structured data to solve safety, automation, and business intelligence problems.
+## 🎯 Profile
 
-## 🛠️ Tech Stack (Portfolio Site)
-This portfolio is designed for maximum performance and a clean "Glassmorphism" aesthetic:
-* **Frontend:** React.js (via CDN for lightweight delivery)
-* **Styling:** Modern CSS3 with Responsive Design (Mobile-First)
-* **Icons:** Lucide-React
-* **Deployment:** Vercel (Automatic CI/CD from GitHub)
+I am an Applied AI student based in Agadir, specializing in **computer vision and intelligent data processing**.
+
+My work focuses on:
+- Designing and training deep learning models for real-world use
+- Optimizing performance for real-time applications
+- Turning raw visual data into actionable insights
+
+---
 
 ## 🌟 Featured Projects
 
-### 1. Real-Time PPE Detection System
-* **Tech:** YOLOv8, PyTorch, OpenCV, Computer Vision
-* **Achievement:** Achieved 84.1% mAP at 34 FPS.
-* **Impact:** Automating workplace safety compliance by detecting helmets and safety vests in real-time.
-* [View Repository](https://github.com/ismail-sarour/pfe-ppe-detection-platform)
+### 🔹 Real-Time PPE Detection System
 
-### 2. Netflix Content Strategy Analysis
-* **Tech:** Python, Pandas, Seaborn, Matplotlib, Statistical Modeling
-* **Achievement:** Implemented a formal statistical sampling framework (95% Confidence Level) to analyze global library trends.
-* [View Repository](https://github.com/ismail-sarour/Netflix-Content-Strategy-Analysis)
+**Tech:** YOLOv8, PyTorch, OpenCV  
+**Performance:** 84.1% mAP — 34 FPS (real-time)
 
-## 📂 Repository Structure
-To keep the project clean, the source code is organized as follows:
-* `/public`: Contains the production-ready `index.html`, assets (CV, Images), and styles.
-* `README.md`: Project overview and professional bio.
-* `.gitignore`: Properly configured to keep sensitive environment variables (`.env`) out of the public domain.
+Developed a real-time Personal Protective Equipment (PPE) detection system to improve safety compliance on construction sites.
 
-## 🔧 Local Development
-1. Clone the repository:
-   ```bash
-   git clone [https://github.com/ismail-sarour/ismail-sarour.git](https://github.com/ismail-sarour/ismail-sarour.git)
+- Trained a custom object detection model on a multi-class PPE dataset (helmet, vest, etc.)
+- Optimized inference to run at 34 FPS on a GTX 1660 Ti
+- Designed for real-time video stream processing in safety-critical environments
+
+👉 https://github.com/ismail-sarour/pfe-ppe-detection-platform
+
+---
+
+### 🔹 Netflix Content Analysis
+
+**Tech:** Python, Pandas, Matplotlib, Seaborn
+
+Analyzed global Netflix content data to extract trends and patterns in content distribution.
+
+- Explored genre distribution, release trends, and regional differences
+- Applied statistical analysis to identify key patterns in content strategy
+- Produced data-driven insights for understanding platform content evolution
+
+👉 https://github.com/ismail-sarour/Netflix-Content-Strategy-Analysis
+
+---
+
+## 🛠️ Portfolio Tech Stack
+
+- React (lightweight implementation)
+- Modern CSS (responsive design)
+- Vercel (deployment & CI/CD)
+
+---
+
+## 📂 Structure
+
+- `/public` → production files (HTML, assets, styles)
+- `README.md` → portfolio overview
+- `.gitignore` → excludes sensitive files
+
+---
+
+## ⚙️ Run Locally
+
+```bash
+git clone https://github.com/ismail-sarour/ismail-sarour.git
