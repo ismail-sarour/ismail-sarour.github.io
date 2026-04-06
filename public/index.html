@@ -1,0 +1,1647 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ismail Sarour - Data Engineering & Applied AI Developer</title>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.production.min.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const { useState, useEffect, useRef } = React;
+
+      // Update these with your actual links
+      const LINKS = {
+        email: "mailto:ismailsarour13@gmail.com",
+        linkedin:
+          "https://www.linkedin.com/in/ismail-sarour-8b63b2316/?originalSubdomain=ma",
+        github: "https://github.com/ismail-sarour",
+        cv: "./Ismail_Sarour_CV.pdf", // Place your CV file in the same folder as index.html
+      };
+
+      // EmailJS Configuration - Sign up at https://www.emailjs.com/
+      // After signing up, replace these with your actual values from EmailJS dashboard
+      const EMAILJS_CONFIG = {
+        serviceId: "service_99cf558", // Replace with your EmailJS service ID
+        templateId: "template_2if6xcw", // Replace with your EmailJS template ID
+        publicKey: "NISe9pADhwVOJ8ab8", // Replace with your EmailJS public key
+      };
+
+      // Icons
+      const Camera = () => (
+        <svg
+          width="40"
+          height="40"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
+          <circle cx="12" cy="13" r="4" />
+        </svg>
+      );
+
+      const Code = () => (
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <polyline points="16 18 22 12 16 6" />
+          <polyline points="8 6 2 12 8 18" />
+        </svg>
+      );
+
+      const Database = () => (
+        <svg
+          width="40"
+          height="40"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <ellipse cx="12" cy="5" rx="9" ry="3" />
+          <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" />
+          <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
+        </svg>
+      );
+
+      const Cpu = () => (
+        <svg
+          width="40"
+          height="40"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <rect x="4" y="4" width="16" height="16" rx="2" ry="2" />
+          <rect x="9" y="9" width="6" height="6" />
+          <line x1="9" y1="1" x2="9" y2="4" />
+          <line x1="15" y1="1" x2="15" y2="4" />
+          <line x1="9" y1="20" x2="9" y2="23" />
+          <line x1="15" y1="20" x2="15" y2="23" />
+          <line x1="20" y1="9" x2="23" y2="9" />
+          <line x1="20" y1="14" x2="23" y2="14" />
+          <line x1="1" y1="9" x2="4" y2="9" />
+          <line x1="1" y1="14" x2="4" y2="14" />
+        </svg>
+      );
+
+      const ArrowRight = () => (
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <line x1="5" y1="12" x2="19" y2="12" />
+          <polyline points="12 5 19 12 12 19" />
+        </svg>
+      );
+
+      const Menu = () => (
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+      );
+
+      const X = () => (
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      );
+
+      const ChevronUp = () => (
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <polyline points="18 15 12 9 6 15" />
+        </svg>
+      );
+
+      const Mail = () => (
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+          <polyline points="22,6 12,13 2,6" />
+        </svg>
+      );
+
+      const Linkedin = () => (
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+          <rect x="2" y="9" width="4" height="12" />
+          <circle cx="4" cy="4" r="2" />
+        </svg>
+      );
+
+      const Github = () => (
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+        </svg>
+      );
+
+      const Target = () => (
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <circle cx="12" cy="12" r="10" />
+          <circle cx="12" cy="12" r="6" />
+          <circle cx="12" cy="12" r="2" />
+        </svg>
+      );
+
+      const Zap = () => (
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+        </svg>
+      );
+
+      const BarChart = () => (
+        <svg
+          width="40"
+          height="40"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <line x1="12" y1="20" x2="12" y2="10" />
+          <line x1="18" y1="20" x2="18" y2="4" />
+          <line x1="6" y1="20" x2="6" y2="16" />
+        </svg>
+      );
+
+      const Sun = () => (
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <circle cx="12" cy="12" r="5" />
+          <line x1="12" y1="1" x2="12" y2="3" />
+          <line x1="12" y1="21" x2="12" y2="23" />
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+          <line x1="1" y1="12" x2="3" y2="12" />
+          <line x1="21" y1="12" x2="23" y2="12" />
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+        </svg>
+      );
+
+      const Moon = () => (
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+        </svg>
+      );
+
+      const Download = () => (
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+          <polyline points="7 10 12 15 17 10" />
+          <line x1="12" y1="15" x2="12" y2="3" />
+        </svg>
+      );
+
+      const Send = () => (
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <line x1="22" y1="2" x2="11" y2="13" />
+          <polygon points="22 2 15 22 11 13 2 9 22 2" />
+        </svg>
+      );
+
+      const Bot = () => (
+        <svg
+          width="40"
+          height="40"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+          <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+        </svg>
+      );
+
+      function Portfolio() {
+        const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+        const [showBackToTop, setShowBackToTop] = useState(false);
+        const [theme, setTheme] = useState(() => {
+          const saved = localStorage.getItem("theme");
+          return saved || "dark";
+        });
+        const [formData, setFormData] = useState({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+        });
+        const [formStatus, setFormStatus] = useState({ type: "", message: "" });
+        const [isSubmitting, setIsSubmitting] = useState(false);
+
+        useEffect(() => {
+          document.documentElement.setAttribute("data-theme", theme);
+          localStorage.setItem("theme", theme);
+        }, [theme]);
+
+        useEffect(() => {
+          const handleScroll = () => {
+            setShowBackToTop(window.scrollY > 400);
+          };
+
+          window.addEventListener("scroll", handleScroll);
+          return () => window.removeEventListener("scroll", handleScroll);
+        }, []);
+
+        const toggleTheme = () => {
+          setTheme((prev) => (prev === "dark" ? "light" : "dark"));
+        };
+
+        const handleFormChange = (e) => {
+          setFormData({
+            ...formData,
+            [e.target.name]: e.target.value,
+          });
+        };
+
+        const handleSubmit = async (e) => {
+          e.preventDefault();
+          setIsSubmitting(true);
+          setFormStatus({ type: "", message: "" });
+
+          try {
+            // Load EmailJS script if not already loaded
+            if (!window.emailjs) {
+              const script = document.createElement("script");
+              script.src =
+                "https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js";
+              script.async = true;
+              document.body.appendChild(script);
+
+              await new Promise((resolve) => {
+                script.onload = resolve;
+              });
+
+              window.emailjs.init(EMAILJS_CONFIG.publicKey);
+            }
+
+            // Send email
+            await window.emailjs.send(
+              EMAILJS_CONFIG.serviceId,
+              EMAILJS_CONFIG.templateId,
+              {
+                from_name: formData.name,
+                from_email: formData.email,
+                subject: formData.subject,
+                message: formData.message,
+              },
+            );
+
+            setFormStatus({
+              type: "success",
+              message: "Message sent successfully! I'll get back to you soon.",
+            });
+            setFormData({ name: "", email: "", subject: "", message: "" });
+          } catch (error) {
+            console.error("EmailJS error:", error);
+            setFormStatus({
+              type: "error",
+              message:
+                "Failed to send message. Please try emailing me directly at ismailsarour13@gmail.com",
+            });
+          } finally {
+            setIsSubmitting(false);
+          }
+        };
+
+        const navItems = [
+          { href: "#about", label: "About" },
+          { href: "#projects", label: "Projects" },
+          { href: "#skills", label: "Skills" },
+          { href: "#contact", label: "Contact" },
+        ];
+
+        return (
+          <div className="portfolio-container">
+            <style>{`
+              * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+              }
+
+              :root[data-theme="dark"] {
+                --bg-primary: #0a0a0a;
+                --bg-secondary: #111111;
+                --bg-elevated: #1a1a1a;
+                --text-primary: #ffffff;
+                --text-secondary: #a0a0a0;
+                --text-muted: #666666;
+                --accent: #3b82f6;
+                --accent-hover: #2563eb;
+                --border: rgba(255, 255, 255, 0.1);
+                --success: #10b981;
+                --error: #ef4444;
+              }
+
+              :root[data-theme="light"] {
+                --bg-primary: #ffffff;
+                --bg-secondary: #f9fafb;
+                --bg-elevated: #f3f4f6;
+                --text-primary: #111827;
+                --text-secondary: #6b7280;
+                --text-muted: #9ca3af;
+                --accent: #3b82f6;
+                --accent-hover: #2563eb;
+                --border: rgba(0, 0, 0, 0.1);
+                --success: #10b981;
+                --error: #ef4444;
+              }
+
+              body {
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                  "Helvetica Neue", Arial, sans-serif;
+                background: var(--bg-primary);
+                color: var(--text-primary);
+                line-height: 1.6;
+                transition: background-color 0.3s ease, color 0.3s ease;
+              }
+
+              .portfolio-container {
+                min-height: 100vh;
+              }
+
+              /* Navigation */
+              nav {
+                position: sticky;
+                top: 0;
+                background: var(--bg-secondary);
+                border-bottom: 1px solid var(--border);
+                backdrop-filter: blur(10px);
+                z-index: 100;
+                transition: background-color 0.3s ease, border-color 0.3s ease;
+              }
+
+              .nav-content {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 1rem 2rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+              }
+
+              .logo {
+                font-size: 1.5rem;
+                font-weight: 700;
+                color: var(--text-primary);
+                text-decoration: none;
+              }
+
+              .nav-links {
+                display: flex;
+                gap: 2rem;
+                align-items: center;
+              }
+
+              .nav-links a {
+                color: var(--text-secondary);
+                text-decoration: none;
+                transition: color 0.2s;
+                font-weight: 500;
+              }
+
+              .nav-links a:hover {
+                color: var(--accent);
+              }
+
+              .theme-toggle {
+                background: transparent;
+                border: 1px solid var(--border);
+                color: var(--text-primary);
+                padding: 0.5rem;
+                border-radius: 0.5rem;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.2s;
+              }
+
+              .theme-toggle:hover {
+                background: var(--bg-elevated);
+                border-color: var(--accent);
+              }
+
+              .mobile-menu-btn {
+                display: none;
+                background: transparent;
+                border: none;
+                color: var(--text-primary);
+                cursor: pointer;
+                padding: 0.5rem;
+              }
+              .mobile-menu,
+              .mobile-overlay {
+                display: none;
+              }
+                
+              @media (max-width: 768px) {
+                .nav-links {
+                  display: none;
+                }
+
+                .mobile-menu-btn {
+                  display: block;
+                }
+
+                .mobile-menu {
+                  display: block;
+                  position: fixed;
+                  top: 0;
+                  right: 0;
+                  width: 70%;
+                  position: fixed;
+                  top: 0;
+                  right: 0;
+                  width: 70%;
+                  max-width: 300px;
+                  height: 100vh;
+                  background: var(--bg-secondary);
+                  padding: 2rem;
+                  transform: translateX(100%);
+                  transition: transform 0.3s ease;
+                  z-index: 200;
+                  border-left: 1px solid var(--border);
+                }
+
+                .mobile-menu.open {
+                  transform: translateX(0);
+                }
+
+                .mobile-menu-header {
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  margin-bottom: 2rem;
+                }
+
+                .mobile-menu-close {
+                  background: transparent;
+                  border: none;
+                  color: var(--text-primary);
+                  cursor: pointer;
+                  padding: 0.5rem;
+                }
+
+                .mobile-menu-links {
+                  display: flex;
+                  flex-direction: column;
+                  gap: 1.5rem;
+                }
+
+                .mobile-menu-links a {
+                  color: var(--text-secondary);
+                  text-decoration: none;
+                  font-size: 1.1rem;
+                  font-weight: 500;
+                }
+
+                .mobile-overlay {
+                  display: block;
+                  position: fixed;
+                  top: 0;
+                  left: 0;
+                  position: fixed;
+                  top: 0;
+                  left: 0;
+                  width: 100%;
+                  height: 100vh;
+                  background: rgba(0, 0, 0, 0.5);
+                  z-index: 150;
+                  opacity: 0;
+                  pointer-events: none;
+                  transition: opacity 0.3s ease;
+                }
+
+                .mobile-overlay.open {
+                  opacity: 1;
+                  pointer-events: auto;
+                }
+              }
+
+              /* Main Content */
+              main {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 2rem;
+              }
+
+              /* Hero Section */
+              .hero {
+                min-height: 90vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                padding: 4rem 0;
+              }
+
+              .hero-content {
+                max-width: 800px;
+              }
+
+              .hero-tag {
+                display: inline-block;
+                background: var(--bg-elevated);
+                color: var(--accent);
+                padding: 0.5rem 1.25rem;
+                border-radius: 2rem;
+                font-size: 0.875rem;
+                font-weight: 600;
+                margin-bottom: 1.5rem;
+                border: 1px solid var(--border);
+              }
+
+              .hero-title {
+                font-size: 3.5rem;
+                font-weight: 800;
+                line-height: 1.1;
+                margin-bottom: 1.5rem;
+              }
+
+              .hero-subtitle {
+                font-size: 1.25rem;
+                color: var(--text-secondary);
+                margin-bottom: 2.5rem;
+                line-height: 1.6;
+              }
+
+              .hero-buttons {
+                display: flex;
+                gap: 1rem;
+                justify-content: center;
+                flex-wrap: wrap;
+              }
+
+              @media (max-width: 768px) {
+                .hero-title {
+                  font-size: 2.5rem;
+                }
+                
+                .hero-subtitle {
+                  font-size: 1.1rem;
+                }
+              }
+
+              /* About Section */
+              #about {
+                padding: 4rem 0;
+              }
+
+              .about-container {
+                display: grid;
+                grid-template-columns: 250px 1fr;
+                gap: 3rem;
+                align-items: start;
+              }
+
+              .about-image {
+                width: 250px;
+                height: 250px;
+                border-radius: 50%;
+                object-fit: cover;
+                border: 4px solid var(--accent);
+                box-shadow: 0 10px 40px rgba(59, 130, 246, 0.2);
+              }
+
+              .about-content h2 {
+                font-size: 2.5rem;
+                margin-bottom: 1.5rem;
+              }
+
+              .about-content p {
+                font-size: 1.125rem;
+                color: var(--text-secondary);
+                line-height: 1.8;
+                margin-bottom: 1rem;
+              }
+
+              @media (max-width: 768px) {
+                .about-container {
+                  grid-template-columns: 1fr;
+                  text-align: center;
+                }
+
+                .about-image {
+                  margin: 0 auto;
+                }
+              }
+
+              /* Section Headers */
+              .section-header {
+                margin-bottom: 3rem;
+              }
+
+              .section-tag {
+                display: inline-block;
+                background: var(--bg-elevated);
+                color: var(--accent);
+                padding: 0.5rem 1.25rem;
+                border-radius: 2rem;
+                font-size: 0.875rem;
+                font-weight: 600;
+                margin-bottom: 1rem;
+                border: 1px solid var(--border);
+              }
+
+              .section-title {
+                font-size: 2.5rem;
+                font-weight: 800;
+              }
+
+              /* Projects Section */
+              #projects {
+                padding: 4rem 0;
+              }
+
+              .project-card {
+                background: var(--bg-secondary);
+                border: 1px solid var(--border);
+                border-radius: 1rem;
+                padding: 2rem;
+                margin-bottom: 2rem;
+                transition: all 0.3s ease;
+              }
+
+              .project-card:hover {
+                border-color: var(--accent);
+                transform: translateY(-2px);
+                box-shadow: 0 10px 40px rgba(59, 130, 246, 0.1);
+              }
+
+              .project-header {
+                margin-bottom: 1.5rem;
+              }
+
+              .project-title {
+                font-size: 1.75rem;
+                margin-bottom: 0.75rem;
+              }
+
+              .project-tech {
+                display: flex;
+                gap: 0.5rem;
+                flex-wrap: wrap;
+              }
+
+              .tech-badge {
+                background: var(--bg-elevated);
+                color: var(--accent);
+                padding: 0.375rem 0.875rem;
+                border-radius: 0.5rem;
+                font-size: 0.875rem;
+                font-weight: 600;
+                border: 1px solid var(--border);
+              }
+
+              .project-description {
+                color: var(--text-secondary);
+                font-size: 1.125rem;
+                line-height: 1.7;
+                margin-bottom: 1.5rem;
+              }
+
+              .project-highlights {
+                margin-top: 1.5rem;
+              }
+
+              .project-highlights h4 {
+                font-size: 1.125rem;
+                margin-bottom: 0.75rem;
+                color: var(--text-primary);
+              }
+
+              .project-highlights ul {
+                list-style: none;
+                padding-left: 0;
+              }
+
+              .project-highlights li {
+                color: var(--text-secondary);
+                padding: 0.375rem 0;
+                padding-left: 1.5rem;
+                position: relative;
+              }
+
+              .project-highlights li:before {
+                content: "→";
+                position: absolute;
+                left: 0;
+                color: var(--accent);
+              }
+
+              .project-links {
+                display: flex;
+                gap: 1rem;
+                margin-top: 1.5rem;
+                padding-top: 1.5rem;
+                border-top: 1px solid var(--border);
+              }
+
+              /* Skills Section */
+              #skills {
+                padding: 4rem 0;
+              }
+
+              .skills-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 2rem;
+              }
+
+              .skill-category {
+                background: var(--bg-secondary);
+                border: 1px solid var(--border);
+                border-radius: 1rem;
+                padding: 2rem;
+                transition: all 0.3s ease;
+              }
+
+              .skill-category:hover {
+                border-color: var(--accent);
+                transform: translateY(-2px);
+              }
+
+              .skill-category h3 {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                font-size: 1.5rem;
+                margin-bottom: 1.5rem;
+                color: var(--text-primary);
+              }
+
+              .skill-category h3 svg {
+                color: var(--accent);
+              }
+
+              .skill-list {
+                list-style: none;
+              }
+
+              .skill-list li {
+                color: var(--text-secondary);
+                padding: 0.5rem 0;
+                padding-left: 1.5rem;
+                position: relative;
+              }
+
+              .skill-list li:before {
+                content: "✓";
+                position: absolute;
+                left: 0;
+                color: var(--accent);
+                font-weight: bold;
+              }
+
+              /* Contact Section */
+              #contact {
+                padding: 4rem 0;
+              }
+
+              .contact-grid {
+                display: grid;
+                grid-template-columns: 1fr 1.5fr;
+                gap: 2rem;
+              }
+
+              .contact-info {
+                background: var(--bg-secondary);
+                border: 1px solid var(--border);
+                border-radius: 1rem;
+                padding: 2rem;
+              }
+
+              .contact-info h3 {
+                font-size: 1.5rem;
+                margin-bottom: 1.5rem;
+              }
+
+              .social-links {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+              }
+
+              .social-link {
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+                color: var(--text-secondary);
+                text-decoration: none;
+                padding: 0.75rem;
+                border-radius: 0.5rem;
+                transition: all 0.2s;
+              }
+
+              .social-link:hover {
+                background: var(--bg-elevated);
+                color: var(--accent);
+              }
+
+              .contact-form {
+                background: var(--bg-secondary);
+                border: 1px solid var(--border);
+                border-radius: 1rem;
+                padding: 2rem;
+              }
+
+              .contact-form h3 {
+                font-size: 1.5rem;
+                margin-bottom: 1.5rem;
+              }
+
+              .form-group {
+                margin-bottom: 1.5rem;
+              }
+
+              .form-group label {
+                display: block;
+                margin-bottom: 0.5rem;
+                color: var(--text-secondary);
+                font-weight: 500;
+              }
+
+              .form-group input,
+              .form-group textarea {
+                width: 100%;
+                padding: 0.875rem 1rem;
+                background: var(--bg-elevated);
+                border: 1px solid var(--border);
+                border-radius: 0.5rem;
+                color: var(--text-primary);
+                font-size: 1rem;
+                font-family: inherit;
+                transition: all 0.2s;
+              }
+
+              .form-group input:focus,
+              .form-group textarea:focus {
+                outline: none;
+                border-color: var(--accent);
+              }
+
+              .form-group textarea {
+                resize: vertical;
+                min-height: 150px;
+              }
+
+              .form-status {
+                padding: 1rem;
+                border-radius: 0.5rem;
+                margin-bottom: 1rem;
+                font-weight: 500;
+              }
+
+              .form-status.success {
+                background: rgba(16, 185, 129, 0.1);
+                color: var(--success);
+                border: 1px solid var(--success);
+              }
+
+              .form-status.error {
+                background: rgba(239, 68, 68, 0.1);
+                color: var(--error);
+                border: 1px solid var(--error);
+              }
+
+              @media (max-width: 768px) {
+                .contact-grid {
+                  grid-template-columns: 1fr;
+                }
+              }
+
+              /* Buttons */
+              .btn {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                padding: 0.875rem 1.75rem;
+                border-radius: 0.5rem;
+                font-weight: 600;
+                text-decoration: none;
+                transition: all 0.2s;
+                cursor: pointer;
+                border: none;
+                font-size: 1rem;
+                font-family: inherit;
+              }
+
+              .btn-primary {
+                background: var(--accent);
+                color: white;
+              }
+
+              .btn-primary:hover {
+                background: var(--accent-hover);
+                transform: translateY(-2px);
+                box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+              }
+
+              .btn-secondary {
+                background: transparent;
+                color: var(--text-primary);
+                border: 1px solid var(--border);
+              }
+
+              .btn-secondary:hover {
+                border-color: var(--accent);
+                color: var(--accent);
+              }
+
+              .btn:disabled {
+                opacity: 0.5;
+                cursor: not-allowed;
+              }
+
+              .btn:disabled:hover {
+                transform: none;
+              }
+
+              /* Footer */
+              footer {
+                background: var(--bg-secondary);
+                border-top: 1px solid var(--border);
+                padding: 2rem;
+                text-align: center;
+                color: var(--text-secondary);
+              }
+
+              /* Back to Top */
+              .back-to-top {
+                position: fixed;
+                bottom: 2rem;
+                right: 2rem;
+                background: var(--accent);
+                color: white;
+                border: none;
+                border-radius: 50%;
+                width: 3rem;
+                height: 3rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                opacity: 0;
+                pointer-events: none;
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+              }
+
+              .back-to-top.visible {
+                opacity: 1;
+                pointer-events: auto;
+              }
+
+              .back-to-top:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
+              }
+            `}</style>
+
+            {/* Navigation */}
+            <nav>
+              <div className="nav-content">
+                <a href="#" className="logo">
+                  IS
+                </a>
+                <div className="nav-links">
+                  {navItems.map((item) => (
+                    <a key={item.href} href={item.href}>
+                      {item.label}
+                    </a>
+                  ))}
+                  <button
+                    className="theme-toggle"
+                    onClick={toggleTheme}
+                    aria-label="Toggle theme"
+                  >
+                    {theme === "dark" ? <Sun /> : <Moon />}
+                  </button>
+                </div>
+                <button
+                  className="mobile-menu-btn"
+                  onClick={() => setMobileMenuOpen(true)}
+                  aria-label="Open menu"
+                >
+                  <Menu />
+                </button>
+              </div>
+            </nav>
+
+            {/* Mobile Menu */}
+            <div
+              className={`mobile-overlay ${mobileMenuOpen ? "open" : ""}`}
+              onClick={() => setMobileMenuOpen(false)}
+            />
+            <div className={`mobile-menu ${mobileMenuOpen ? "open" : ""}`}>
+              <div className="mobile-menu-header">
+                <span className="logo">IS</span>
+                <button
+                  className="mobile-menu-close"
+                  onClick={() => setMobileMenuOpen(false)}
+                  aria-label="Close menu"
+                >
+                  <X />
+                </button>
+              </div>
+              <div className="mobile-menu-links">
+                {navItems.map((item) => (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {item.label}
+                  </a>
+                ))}
+                <button
+                  className="theme-toggle"
+                  onClick={toggleTheme}
+                  style={{ width: "fit-content" }}
+                >
+                  {theme === "dark" ? <Sun /> : <Moon />}
+                  <span style={{ marginLeft: "0.5rem" }}>
+                    {theme === "dark" ? "Light" : "Dark"} Mode
+                  </span>
+                </button>
+              </div>
+            </div>
+
+            {/* Main Content */}
+            <main>
+              {/* Hero Section */}
+              <section className="hero">
+                <div className="hero-content">
+                  <div className="hero-tag">Available for Freelance</div>
+                  <h1 className="hero-title">
+                    Data Engineering & Applied AI Developer
+                  </h1>
+                  <p className="hero-subtitle">
+                    Building intelligent systems through data pipelines, machine
+                    learning, and computer vision. Transforming data into
+                    actionable insights.
+                  </p>
+                  <div className="hero-buttons">
+                    <a href="#projects" className="btn btn-primary">
+                      View Projects
+                      <ArrowRight />
+                    </a>
+                    <a href={LINKS.cv} className="btn btn-secondary" download>
+                      <Download />
+                      Download CV
+                    </a>
+                  </div>
+                </div>
+              </section>
+
+              {/* About Section */}
+              <section id="about">
+                <div className="about-container">
+                  <img
+                    src="profile.png"
+                    alt="Ismail Sarour"
+                    className="about-image"
+                  />
+                  <div className="about-content">
+                    <h2>About Me</h2>
+                    <p>
+                      I'm a Data Engineering student passionate about leveraging
+                      data and AI to solve real-world problems. My expertise
+                      spans data analysis, machine learning, computer vision,
+                      and building end-to-end data pipelines.
+                    </p>
+                    <p>
+                      Currently working on innovative projects that combine data
+                      engineering with applied AI, including computer vision
+                      systems and intelligent automation. I focus on creating
+                      practical, production-ready solutions that deliver
+                      measurable impact.
+                    </p>
+                    <p>
+                      When I'm not coding, I'm exploring new ML techniques,
+                      contributing to open-source projects, or learning about
+                      the latest developments in AI and data infrastructure.
+                    </p>
+                  </div>
+                </div>
+              </section>
+
+              {/* Projects Section */}
+              <section id="projects">
+                <div className="section-header">
+                  <div className="section-tag">Work</div>
+                  <h2 className="section-title">Featured Projects</h2>
+                </div>
+
+                {/* AI Budget Management System */}
+                <div className="project-card">
+                  <div className="project-header">
+                    <h3 className="project-title">
+                      AI-Powered Budget Management System
+                    </h3>
+                    <div className="project-tech">
+                      <span className="tech-badge">Python</span>
+                      <span className="tech-badge">Pandas</span>
+                      <span className="tech-badge">Scikit-learn</span>
+                      <span className="tech-badge">TF-IDF</span>
+                      <span className="tech-badge">AI Agents</span>
+                    </div>
+                  </div>
+                  <p className="project-description">
+                    Building an intelligent budget management system for a
+                    Moroccan public institution (CASM). The system automates
+                    budget analysis and recommendations through AI agents and
+                    machine learning models.
+                  </p>
+                  <div className="project-highlights">
+                    <h4>Key Features</h4>
+                    <ul>
+                      <li>
+                        Data cleaning pipeline for processing institutional
+                        budget data
+                      </li>
+                      <li>
+                        AnalyzerAgent and RecommenderAgent for intelligent
+                        budget insights
+                      </li>
+                      <li>
+                        TF-IDF-based cosine similarity model for budget
+                        prediction
+                      </li>
+                      <li>
+                        Currently in development - delivering in sprint-based
+                        approach
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                {/* PPE Detection System */}
+                <div className="project-card">
+                  <div className="project-header">
+                    <h3 className="project-title">
+                      PPE Detection System for Construction Sites
+                    </h3>
+                    <div className="project-tech">
+                      <span className="tech-badge">YOLOv8</span>
+                      <span className="tech-badge">ByteTrack</span>
+                      <span className="tech-badge">OpenCV</span>
+                      <span className="tech-badge">FastAPI</span>
+                      <span className="tech-badge">PostgreSQL</span>
+                    </div>
+                  </div>
+                  <p className="project-description">
+                    Developed a real-time PPE detection and tracking system for
+                    construction site safety monitoring. Achieved 84.1% mAP@50
+                    with YOLOv8s and implemented ByteTrack for persistent worker
+                    tracking.
+                  </p>
+                  <div className="project-highlights">
+                    <h4>Technical Achievements</h4>
+                    <ul>
+                      <li>
+                        84.1% mAP@50 accuracy using YOLOv8s on custom PPE
+                        dataset
+                      </li>
+                      <li>
+                        Real-time object tracking with ByteTrack algorithm
+                      </li>
+                      <li>
+                        Zone-based safety rule enforcement and violation
+                        detection
+                      </li>
+                      <li>
+                        Trained on Kaggle Tesla P100, deployed with FastAPI
+                        backend
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="project-links">
+                    <a
+                      href={`${LINKS.github}/pfe-ppe-detection-platform`}
+                      className="btn btn-secondary"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Github />
+                      View Source Code
+                    </a>
+                  </div>
+                </div>
+
+                {/* Netflix Analysis */}
+                <div className="project-card">
+                  <div className="project-header">
+                    <h3 className="project-title">
+                      Netflix Content Strategy Analysis
+                    </h3>
+                    <div className="project-tech">
+                      <span className="tech-badge">Python</span>
+                      <span className="tech-badge">Pandas</span>
+                      <span className="tech-badge">Matplotlib</span>
+                      <span className="tech-badge">Seaborn</span>
+                    </div>
+                  </div>
+                  <p className="project-description">
+                    Comprehensive analysis of Netflix's global content library
+                    to identify strategic patterns and trends. Extracted
+                    actionable insights from 190+ countries and 15+ genres to
+                    support data-driven content decisions.
+                  </p>
+                  <div className="project-highlights">
+                    <h4>Key Insights</h4>
+                    <ul>
+                      <li>
+                        Identified content distribution patterns and regional
+                        preferences
+                      </li>
+                      <li>
+                        Analyzed temporal trends revealing strategic production
+                        shifts
+                      </li>
+                      <li>
+                        Built comprehensive visualizations with statistical
+                        analysis
+                      </li>
+                      <li>
+                        Data cleaning, EDA, and multi-dimensional aggregation
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="project-links">
+                    <a
+                      href="https://github.com/ismail-sarour/Netflix-Content-Strategy-Analysis"
+                      className="btn btn-secondary"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Github />
+                      View Source Code
+                    </a>
+                  </div>
+                </div>
+              </section>
+
+              {/* Skills Section */}
+              <section id="skills">
+                <div className="section-header">
+                  <div className="section-tag">Expertise</div>
+                  <h2 className="section-title">Skills & Technologies</h2>
+                </div>
+
+                <div className="skills-grid">
+                  <div className="skill-category">
+                    <h3>
+                      <Database />
+                      Data Engineering
+                    </h3>
+                    <ul className="skill-list">
+                      <li>Data cleaning & transformation</li>
+                      <li>ETL pipelines</li>
+                      <li>SQL & database design</li>
+                      <li>Data quality assurance</li>
+                    </ul>
+                  </div>
+
+                  <div className="skill-category">
+                    <h3>
+                      <Cpu />
+                      Machine Learning
+                    </h3>
+                    <ul className="skill-list">
+                      <li>Model training & evaluation</li>
+                      <li>Feature engineering</li>
+                      <li>Scikit-learn, TensorFlow</li>
+                      <li>ML deployment pipelines</li>
+                    </ul>
+                  </div>
+
+                  <div className="skill-category">
+                    <h3>
+                      <Camera />
+                      Computer Vision
+                    </h3>
+                    <ul className="skill-list">
+                      <li>Object detection (YOLO)</li>
+                      <li>Real-time video processing</li>
+                      <li>OpenCV, image preprocessing</li>
+                      <li>Tracking algorithms</li>
+                    </ul>
+                  </div>
+
+                  <div className="skill-category">
+                    <h3>
+                      <Bot />
+                      AI Development
+                    </h3>
+                    <ul className="skill-list">
+                      <li>AI agent systems</li>
+                      <li>NLP & text processing</li>
+                      <li>Automation workflows</li>
+                      <li>Production deployment</li>
+                    </ul>
+                  </div>
+                </div>
+              </section>
+
+              {/* Contact Section */}
+              <section id="contact">
+                <div className="section-header">
+                  <div className="section-tag">Get in Touch</div>
+                  <h2 className="section-title">Let's Work Together</h2>
+                </div>
+
+                <div className="contact-grid">
+                  {/* Contact Info */}
+                  <div className="contact-info">
+                    <h3>Connect With Me</h3>
+                    <p
+                      style={{
+                        color: "var(--text-secondary)",
+                        marginBottom: "1.5rem",
+                      }}
+                    >
+                      Open for freelance projects and collaboration
+                      opportunities in:
+                    </p>
+                    <ul className="skill-list" style={{ marginBottom: "2rem" }}>
+                      <li>Computer Vision Solutions</li>
+                      <li>ML Model Development</li>
+                      <li>Data Pipeline Design</li>
+                      <li>AI Agent Systems</li>
+                    </ul>
+                    <div className="social-links">
+                      <a href={LINKS.email} className="social-link">
+                        <Mail />
+                        ismailsarour13@gmail.com
+                      </a>
+                      <a
+                        href={LINKS.linkedin}
+                        className="social-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Linkedin />
+                        LinkedIn Profile
+                      </a>
+                      <a
+                        href={LINKS.github}
+                        className="social-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Github />
+                        GitHub Profile
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Contact Form */}
+                  <div className="contact-form">
+                    <h3>Send a Message</h3>
+                    {formStatus.message && (
+                      <div className={`form-status ${formStatus.type}`}>
+                        {formStatus.message}
+                      </div>
+                    )}
+                    <form onSubmit={handleSubmit}>
+                      <div className="form-group">
+                        <label htmlFor="name">Your Name</label>
+                        <input
+                          type="text"
+                          id="name"
+                          name="name"
+                          value={formData.name}
+                          onChange={handleFormChange}
+                          required
+                          placeholder="John Doe"
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label htmlFor="email">Your Email</label>
+                        <input
+                          type="email"
+                          id="email"
+                          name="email"
+                          value={formData.email}
+                          onChange={handleFormChange}
+                          required
+                          placeholder="john@example.com"
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label htmlFor="subject">Subject</label>
+                        <input
+                          type="text"
+                          id="subject"
+                          name="subject"
+                          value={formData.subject}
+                          onChange={handleFormChange}
+                          required
+                          placeholder="Project Inquiry"
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label htmlFor="message">Message</label>
+                        <textarea
+                          id="message"
+                          name="message"
+                          value={formData.message}
+                          onChange={handleFormChange}
+                          required
+                          placeholder="Tell me about your project..."
+                        />
+                      </div>
+                      <button
+                        type="submit"
+                        className="btn btn-primary"
+                        disabled={isSubmitting}
+                        style={{ width: "100%" }}
+                      >
+                        {isSubmitting ? (
+                          "Sending..."
+                        ) : (
+                          <>
+                            <Send />
+                            Send Message
+                          </>
+                        )}
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </section>
+            </main>
+
+            {/* Footer */}
+            <footer>
+              <p>
+                © 2026 Ismail Sarour · Data Engineering & Applied AI Developer
+              </p>
+            </footer>
+
+            {/* Back to Top */}
+            <button
+              type="button"
+              className={`back-to-top ${showBackToTop ? "visible" : ""}`}
+              aria-label="Back to top"
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            >
+              <ChevronUp />
+            </button>
+          </div>
+        );
+      }
+
+      ReactDOM.render(<Portfolio />, document.getElementById("root"));
+    </script>
+  </body>
+</html>
