@@ -1,4 +1,4 @@
 *.html
-*.png
 .env*
 .vercel
+.env.local
